@@ -14,8 +14,8 @@ jobs:
       run: docker build . --file Dockerfile --tag docker-gen-nsupdate:latest
     - name: Push
       run: |
-        docker login docker.pkg.github.com -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
-        docker push docker.pkg.github.com/PoppyPop/docker-gen-nsupdate/docker-gen-nsupdate:latest
+        echo ${DOCKER_PASSWORD} | docker login docker.pkg.github.com -u ${DOCKER_USERNAME} --password-stdin
+        docker push docker.pkg.github.com/poppypop/docker-gen-nsupdate/docker-gen-nsupdate:latest
       env:
         DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         DOCKER_USERNAME: publisher
