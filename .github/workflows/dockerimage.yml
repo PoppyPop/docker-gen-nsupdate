@@ -11,11 +11,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag docker-gen-nsupdate:latest
+      run: docker build . --file Dockerfile --tag docker.pkg.github.com/poppypop/docker-gen-nsupdate/image:latest
     - name: Push
       run: |
         echo ${DOCKER_PASSWORD} | docker login docker.pkg.github.com -u ${DOCKER_USERNAME} --password-stdin
-        docker push docker.pkg.github.com/poppypop/docker-gen-nsupdate/docker-gen-nsupdate:latest
+        docker push docker.pkg.github.com/poppypop/docker-gen-nsupdate/image:latest
       env:
         DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         DOCKER_USERNAME: publisher
